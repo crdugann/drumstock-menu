@@ -1,244 +1,139 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accessible Drink Menu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Tahoma, sans-serif;
+      background-color: #eef2f7;
+      display: grid;
+      grid-template-areas:
+        "header header header"
+        "sidebar main main"
+        "sidebar main main"
+        "footer footer footer";
+      grid-template-columns: 1fr 2fr;
+      grid-template-rows: auto 1fr 1fr auto;
+      gap: 10px;
+      min-height: 100vh;
+    }
 
-<!-- saved from url=(0068)file:///Users/chrisdugan/Desktop/lakedrum_menu_v2_mobile.html#ciders -->
-<html lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Accessible Drink Menu</title>
-<style>
-  body {
-    margin: 0;
-    font-family: Tahoma, sans-serif;
-    background-color: #eef2f7;
-    display: grid;
-    grid-template-areas:
-      "header header header"
-      "sidebar main wildcard"
-      "sidebar main wildcard"
-      "footer footer footer";
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: auto 1fr 1fr auto;
-    gap: 10px;
-    min-height: 100vh;
-  }
+    header {
+      grid-area: header;
+      background: #0077cc;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.8em;
+    }
 
-  header {
-    grid-area: header;
-    background: #0077cc;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 1.8em;
-  }
+    aside {
+      grid-area: sidebar;
+      background: #cce5ff;
+      padding: 20px;
+    }
 
-  aside {
-    grid-area: sidebar;
-    background: #cce5ff;
-    padding: 20px;
-  }
+    main {
+      grid-area: main;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+    }
 
-  main {
-    grid-area: main;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-  }
+    footer {
+      grid-area: footer;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+    }
 
-  .wildcard {
-    grid-area: wildcard;
-    background: #d4edda;
-    padding: 20px;
-    border-radius: 10px;
-  }
+    nav {
+      background-color: #222;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
 
-  footer {
-    grid-area: footer;
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 15px;
-  }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
-  nav {
-    background-color: #222;
-    padding: 10px;
-    margin-bottom: 20px;
-  }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+    }
 
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 1rem;
-  }
+    nav a:focus,
+    nav a:hover {
+      background-color: #444;
+      outline: 2px solid #f90;
+    }
 
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-  }
+    .menu-category {
+      margin-bottom: 20px;
+    }
 
-  nav a:focus,
-  nav a:hover {
-    background-color: #444;
-    outline: 2px solid #f90;
-  }
+    .menu-category h3 {
+      color: #0077cc;
+      margin-bottom: 10px;
+    }
 
-  .menu-category {
-    margin-bottom: 20px;
-  }
+    .menu-item {
+      margin-bottom: 10px;
+    }
 
-  .menu-category h3 {
-    color: #0077cc;
-    margin-bottom: 10px;
-  }
+    .item-name {
+      font-weight: bold;
+    }
 
-  .menu-item {
-    margin-bottom: 10px;
-  }
+    .item-desc {
+      display: block;
+      margin: 4px 0;
+    }
 
-  .item-name {
-    font-weight: bold;
-  }
+    .item-price {
+      font-style: italic;
+    }
 
-  .item-desc {
-    display: block;
-    margin: 4px 0;
-  }
-
-  .item-price {
-    font-style: italic;
-  }
-</style>
-<style>
-        button {
-            font-size: 1.2em;
-            padding: 10px 20px;
-            margin: 5px 0;
-            background-color: #0077cc;
-            color: white;
-            border: none;
-            border-radius: 6px;
-        }
-        </style></head>
+    button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      margin: 5px 0;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+    }
+  </style>
+</head>
 <body>
 <header>Drink Menu</header>
 <aside>
 <h2>Navigation</h2>
 <nav aria-label="Main Menu">
 <ul role="menubar">
-<li role="none"><a href="file:///Users/chrisdugan/Desktop/lakedrum_menu_v2_mobile.html#ciders" role="menuitem">Ciders</a></li>
-<li role="none"><a href="file:///Users/chrisdugan/Desktop/lakedrum_menu_v2_mobile.html#beers" role="menuitem">Beers</a></li>
-<li role="none"><a href="file:///Users/chrisdugan/Desktop/lakedrum_menu_v2_mobile.html#wine" role="menuitem">Wine</a></li>
-<li role="none"><a href="file:///Users/chrisdugan/Desktop/lakedrum_menu_v2_mobile.html#non-alcoholic" role="menuitem">Non-Alcoholic</a></li>
+<li role="none"><a href="#ciders" role="menuitem">Ciders</a></li>
+<li role="none"><a href="#beers" role="menuitem">Beers</a></li>
+<li role="none"><a href="#wine" role="menuitem">Wine</a></li>
+<li role="none"><a href="#non-alcoholic" role="menuitem">Non-Alcoholic</a></li>
 </ul>
 </nav>
 </aside>
 <main>
-<section class="menu-category" id="ciders">
-<h3>Ciders</h3><audio controls="True"><source src="menu_audios/section_1.mp3" type="audio/mp3"/></audio><button onclick="playAudio('menu_audios/section_1.mp3')">🔊 Play Ciders</button>
-<div class="menu-item">
-<span class="item-name">Pippin Ain’t Easy</span>
-<span class="item-desc">Dry – Single Varietal House Cider, Made with Newton Pippin Apples. ABV: 5.7%</span>
-<span class="item-price">$8 – 12 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_2.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Rock &amp; Rye</span>
-<span class="item-desc">Dry – Still Cider Aged For 6 Months in Rye Whiskey Barrels. ABV: 8.5%</span>
-<span class="item-price">$7 – 8 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_3.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Infrared Rosé</span>
-<span class="item-desc">Semi-Dry – Rosé Style Cider with Dolgo and Damson Plums. ABV: 6.3%</span>
-<span class="item-price">$7 – 12 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_4.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Lady Lavender</span>
-<span class="item-desc">Semi-Dry – Balanced Herbal Cider with Damson Plums and Lavender. ABV: 6.5%</span>
-<span class="item-price">$7 – 12 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_5.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Electric Koolaid</span>
-<span class="item-desc">Sweet – Golden Russet Cider, Notes of Strawberry, Orange, and Peach. ABV: 6.8%</span>
-<span class="item-price">$7 – 12 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_6.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Perry</span>
-<span class="item-desc">Semi-Sweet – Single Varietal Pear Cider. ABV: 4.9%</span>
-<span class="item-price">$7 – 12 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_7.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Tulsi Cider</span>
-<span class="item-desc">Sweet – Tulsi Basil Cider, Locally Grown. ABV: 6.2%</span>
-<span class="item-price">$7 – 12 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_8.mp3" type="audio/mp3"/></audio>
-</section>
-<section class="menu-category" id="beers">
-<h3>Beers</h3><audio controls="True"><source src="menu_audios/section_9.mp3" type="audio/mp3"/></audio><button onclick="playAudio('menu_audios/section_2.mp3')">🔊 Play Beers</button>
-<div class="menu-item">
-<span class="item-name">Grapefruit Sour</span>
-<span class="item-desc">Strong grapefruit flavor, with some notes of orange peel. ABV: 5.6%</span>
-<span class="item-price">$7 – 12 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_10.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Toasted Red Ale</span>
-<span class="item-desc">Irish Red Ale with toasted grain and light bitterness. ABV: 4.7%</span>
-<span class="item-price">$6 – 16 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_11.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Señor Crispy Lager</span>
-<span class="item-desc">Bright and crisp Mexican-style lager. ABV: 4.2%</span>
-<span class="item-price">$6 – 16 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_12.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Rise</span>
-<span class="item-desc">American pale ale with citrus notes and mild pine sap. ABV: 5.9%</span>
-<span class="item-price">$7 – 16 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_13.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">G-Town Brown</span>
-<span class="item-desc">Brown ale with caramel and burnt chocolate notes. ABV: 5.2%</span>
-<span class="item-price">$6 – 12 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_14.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Buckwheat Stout on Nitro</span>
-<span class="item-desc">Roasted buckwheat stout, creamy texture with coffee flavors. ABV: 8.2%</span>
-<span class="item-price">$7 – 12 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_15.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Bowen Porter</span>
-<span class="item-desc">Ashy, caramel and chocolate notes. ABV: 6.1%</span>
-<span class="item-price">$7 – 16 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_16.mp3" type="audio/mp3"/></audio>
-</section>
-<section class="menu-category" id="wine">
-<h3>Wine</h3><audio controls="True"><source src="menu_audios/section_17.mp3" type="audio/mp3"/></audio><button onclick="playAudio('menu_audios/section_3.mp3')">🔊 Play Wine</button>
-<div class="menu-item">
-<span class="item-name">House White</span>
-<span class="item-desc">Gewürztraminer and Vidal blend. ABV: 15.1%</span>
-<span class="item-price">$8 – 6 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_18.mp3" type="audio/mp3"/></audio>
-<div class="menu-item">
-<span class="item-name">Lot 99 Red Wine (Thirsty Owl)</span>
-<span class="item-desc">Pinot Noir and Chancellor blend. ABV: 12%</span>
-<span class="item-price">$8 – 6 oz.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_19.mp3" type="audio/mp3"/></audio>
-</section>
-<section class="menu-category" id="non-alcoholic">
-<h3>Non-Alcoholic / Low Alcohol</h3><audio controls="True"><source src="menu_audios/section_20.mp3" type="audio/mp3"/></audio><button onclick="playAudio('menu_audios/section_4.mp3')">🔊 Play Non-Alcoholic / Low Alcohol</button>
-<div class="menu-item">
-<span class="item-name">Kombucha</span>
-<span class="item-desc">Citrus flavor.</span>
-</div><audio controls="True"><source src="menu_audios/menu_item_21.mp3" type="audio/mp3"/></audio>
-</section>
+<!-- Placeholder to indicate menu section will go here -->
+<p>Insert your full drink menu with audio buttons here.</p>
 </main>
-<div class="wildcard">
-<h2>Special Offers</h2>
-<p>Ask our staff about seasonal specials!</p>
-</div>
 <footer>© 2025 The Drink Company</footer>
 <script>
-  // Basic keyboard navigation for menu links
   const menuLinks = document.querySelectorAll('nav a');
   menuLinks.forEach(link => {
     link.addEventListener('keydown', e => {
@@ -252,11 +147,11 @@
       }
     });
   });
+
+  function playAudio(path) {
+    const audio = new Audio(path);
+    audio.play();
+  }
 </script>
-<script>
-        function playAudio(path) {
-            const audio = new Audio(path);
-            audio.play();
-        }
-        </script>
-</body></html>
+</body>
+</html>
