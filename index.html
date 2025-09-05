@@ -1,164 +1,185 @@
-
 <!DOCTYPE html>
-
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Accessible Drink Menu</title>
-<style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-      background: #f9f9f9;
-    }
-    .menu-category {
-      margin-bottom: 2em;
-    }
-    .menu-item button {
-      display: block;
-      width: 100%;
-      font-size: 1.2em;
-      padding: 10px;
-      margin-bottom: 5px;
-      background-color: #0077cc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      text-align: left;
-    }
-    .item-desc {
-      padding: 10px;
-      background: #e3f2fd;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Drink Menu
+  </title>
+  <style>
+   .menu-category { margin-bottom: 2rem; }
+    .menu-item button { margin-right: 0.5rem; }
   </style>
-<style>
-.audio-button {
-  font-size: 1em;
-  padding: 5px 10px;
-  background-color: #555;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  margin-top: 5px;
-  display: inline-block;
-}
-</style><style>
-        button {
-            font-size: 1.2em;
-            padding: 10px 20px;
-            margin: 5px 0;
-            background-color: #0077cc;
-            color: white;
-            border: none;
-            border-radius: 6px;
-        }
-        </style><style>
-        button {
-            font-size: 1.2em;
-            padding: 10px 20px;
-            margin: 5px 0;
-            background-color: #0077cc;
-            color: white;
-            border: none;
-            border-radius: 6px;
-        }
-        </style></head>
-<body>
-<h1>Drumstock Drink Menu</h1>
-<section aria-labelledby="draft-heading" class="menu-category">
-<h2 id="draft-heading">Draft</h2><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/section_draft.mp3').play()">🔊</button>
-<div class="menu-item">
-<button aria-controls="desc-bird" aria-expanded="false" onclick="toggleDesc('desc-bird', this)">Bird Song</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_bird_song.mp3').play()">🔊</button>
-<div class="item-desc" hidden="" id="desc-bird"></div>
-</div>
-<div class="menu-item">
-<button aria-controls="desc-rose-draft" aria-expanded="false" onclick="toggleDesc('desc-rose-draft', this)">Rosé All Day</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_ros__all_day.mp3').play()">🔊</button>
-<div class="item-desc" hidden="" id="desc-rose-draft">Waiting on description.</div>
-</div>
-<div class="menu-item">
-<button aria-controls="desc-shandy" aria-expanded="false" onclick="toggleDesc('desc-shandy', this)">River Daddy Shandy</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_river_daddy_shandy.mp3').play()">🔊</button>
-<div class="item-desc" hidden="" id="desc-shandy">Waiting on description.</div>
-</div>
-<div class="menu-item">
-<button aria-controls="desc-sangria" aria-expanded="false" onclick="toggleDesc('desc-sangria', this)">Sangria</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_sangria.mp3').play()">🔊</button>
-<div class="item-desc" hidden="" id="desc-sangria">Waiting on description.</div>
-</div>
-<div class="menu-item">
-<button aria-controls="desc-electric" aria-expanded="false" onclick="toggleDesc('desc-electric', this)">Electric Kool Aid</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_electric_kool_aid.mp3').play()">🔊</button>
-<div class="item-desc" hidden="" id="desc-electric">
-        Sweet– Golden Russet Cider, notes of Strawberry, Orange, and Fermented Peach.<br/>
-        ABV: 5.8% — $7… 12 oz.
-      </div>
-</div>
-<div class="menu-item">
-<button aria-controls="desc-tulsi" aria-expanded="false" onclick="toggleDesc('desc-tulsi', this)">Tulsi</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_tulsi.mp3').play()">🔊</button>
-<div class="item-desc" hidden="" id="desc-tulsi">
-        Sweet– Made with tulsi basil grown by Fellenz Farm and sage grown at our Stark St. gardens.<br/>
-        ABV: 6.2% — $7… 12 oz.
-      </div>
-</div>
-</section>
-<section aria-labelledby="cans-heading" class="menu-category">
-<h2 id="cans-heading">Cans</h2><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/section_cans.mp3').play()">🔊</button>
-<div class="menu-item">
-<button aria-controls="desc-pippin-cans" aria-expanded="false" onclick="toggleDesc('desc-pippin-cans', this)">Pippin Ain’t Easy</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_pippin_ain_t_easy.mp3').play()">🔊</button>
-<div class="item-desc" hidden="" id="desc-pippin-cans">
-        Dry – Single Varietal House Cider, Made with Newton Pippin Apples.<br/>
-        ABV: 5.7% — $8… 12 oz.
-      </div>
-</div>
-<div class="menu-item">
-<button aria-controls="desc-rose-cans" aria-expanded="false" onclick="toggleDesc('desc-rose-cans', this)">Rosé All Day</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_ros__all_day.mp3').play()">🔊</button>
-<div class="item-desc" hidden="" id="desc-rose-cans">Waiting on description.</div>
-</div>
-</section>
-<script>
-    function toggleDesc(id, btn) {
+ </head>
+ <body>
+  <h1>
+   Drumstock 2025 Menu
+  </h1>
+  <section aria-labelledby="beer-heading" class="menu-category">
+   <h2 id="beer-heading">
+    Beer
+   </h2>
+   <div class="menu-item">
+    <button aria-controls="desc-rise-pale" aria-expanded="false" onclick="toggleDesc('desc-rise-pale', this)">
+     Rise Pale Ale
+     <button aria-hidden="true" onclick="playAudio('menu_audios/rise-pale_name.mp3')">
+      ▶️
+     </button>
+    </button>
+    <div class="item-desc" hidden="" id="desc-rise-pale">
+     An American Pale Ale flavored with Citra and Mackinac hops. Dry start to finish, this beverage gives citrus fruit, a hint of pine sap and tangerine peel notes on a barely perceptible grainy malt canvas. The Mackinac hops are 100% New York State.
+     <br/>
+     ABV: 5.9%, 43 IBUs
+     <button aria-hidden="true" onclick="playAudio('menu_audios/rise-pale_desc.mp3')">
+      ▶️
+     </button>
+    </div>
+   </div>
+   <div class="menu-item">
+    <button aria-controls="desc-bad-dog" aria-expanded="false" onclick="toggleDesc('desc-bad-dog', this)">
+     Bad Dog IPA
+     <button aria-hidden="true" onclick="playAudio('menu_audios/bad-dog_name.mp3')">
+      ▶️
+     </button>
+    </button>
+    <div class="item-desc" hidden="" id="desc-bad-dog">
+     Pine and citrus dominate this straw-colored, West Coast inspired IPA that won best beer in the Finger Lakes in 2018.
+     <br/>
+     ABV: 6.5%, 76 IBUs
+     <button aria-hidden="true" onclick="playAudio('menu_audios/bad-dog_desc.mp3')">
+      ▶️
+     </button>
+    </div>
+   </div>
+   <div class="menu-item">
+    <button aria-controls="desc-senor-crispy" aria-expanded="false" onclick="toggleDesc('desc-senor-crispy', this)">
+     Senor Crispy Lager
+     <button aria-hidden="true" onclick="playAudio('menu_audios/senor-crispy_name.mp3')">
+      ▶️
+     </button>
+    </button>
+    <div class="item-desc" hidden="" id="desc-senor-crispy">
+     Very bright and crisp with a floral and citrus bouquet. A strong nod to a popular Mexican lager. A simple grain bill and a simple hop bill result in a no-nonsense, clean beverage.
+     <br/>
+     ABV: 4.8%, 15 IBUs
+     <button aria-hidden="true" onclick="playAudio('menu_audios/senor-crispy_desc.mp3')">
+      ▶️
+     </button>
+    </div>
+   </div>
+   <div class="menu-item">
+    <button aria-controls="desc-dry-hopped" aria-expanded="false" onclick="toggleDesc('desc-dry-hopped', this)">
+     Dry Hopped Pilsner
+     <button aria-hidden="true" onclick="playAudio('menu_audios/dry-hopped_name.mp3')">
+      ▶️
+     </button>
+    </button>
+    <div class="item-desc" hidden="" id="desc-dry-hopped">
+     Our Pulteney Pilsner dry-hopped with just enough Bohemian Saaz to create a unique tasting pilsner that is reminiscent of an unskunked German malt beverage found within a green bottle. Saaz on the nose, floral. Herbal, earthy notes that linger on the palate. Bitter but less assertive than our naked Pulteney Pils.
+     <br/>
+     ABV: 5.4%, 30 IBUs
+     <button aria-hidden="true" onclick="playAudio('menu_audios/dry-hopped_desc.mp3')">
+      ▶️
+     </button>
+    </div>
+   </div>
+  </section>
+  <section aria-labelledby="cider-heading" class="menu-category">
+   <h2 id="cider-heading">
+    Cider
+   </h2>
+   <div class="menu-item">
+    <button aria-controls="desc-bird-song" aria-expanded="false" onclick="toggleDesc('desc-bird-song', this)">
+     Bird Song
+     <button aria-hidden="true" onclick="playAudio('menu_audios/bird-song_name.mp3')">
+      ▶️
+     </button>
+    </button>
+    <div class="item-desc" hidden="" id="desc-bird-song">
+     Dry; nose is reminiscent of kindergarten lunch; applesauce with a tin foil lid. Pleasant yet refined apple flavor balanced towards the tannins and mellowed by carbonation.
+     <br/>
+     ABV: 6.8%
+     <button aria-hidden="true" onclick="playAudio('menu_audios/bird-song_desc.mp3')">
+      ▶️
+     </button>
+    </div>
+   </div>
+   <div class="menu-item">
+    <button aria-controls="desc-rose-all-day" aria-expanded="false" onclick="toggleDesc('desc-rose-all-day', this)">
+     Rosé All Day
+     <button aria-hidden="true" onclick="playAudio('menu_audios/rose-all-day_name.mp3')">
+      ▶️
+     </button>
+    </button>
+    <div class="item-desc" hidden="" id="desc-rose-all-day">
+     Gentle acidity blending a fruit forward mouthfeel with a graceful citrusy finish. Cherry, red apple, watermelon rind make this juicy blend drink like a wine, without all the pretentiousness.
+     <br/>
+     ABV: 6.8%
+     <button aria-hidden="true" onclick="playAudio('menu_audios/rose-all-day_desc.mp3')">
+      ▶️
+     </button>
+    </div>
+   </div>
+   <div class="menu-item">
+    <button aria-controls="desc-river-daddy" aria-expanded="false" onclick="toggleDesc('desc-river-daddy', this)">
+     River Daddy Shandy
+     <button aria-hidden="true" onclick="playAudio('menu_audios/river-daddy_name.mp3')">
+      ▶️
+     </button>
+    </button>
+    <div class="item-desc" hidden="" id="desc-river-daddy">
+     Sweet; refreshing, a little tart but easy drinking. Notes of honeydew, watermelon, citrus and fresh apple. The tannins make it feel like grapefruit, balancing the sweetness and tartness provides another dimension.
+     <br/>
+     ABV: 7.1%
+     <button aria-hidden="true" onclick="playAudio('menu_audios/river-daddy_desc.mp3')">
+      ▶️
+     </button>
+    </div>
+   </div>
+   <div class="menu-item">
+    <button aria-controls="desc-sangria" aria-expanded="false" onclick="toggleDesc('desc-sangria', this)">
+     Sangria
+     <button aria-hidden="true" onclick="playAudio('menu_audios/sangria_name.mp3')">
+      ▶️
+     </button>
+    </button>
+    <div class="item-desc" hidden="" id="desc-sangria">
+     Refreshing blend of white wine, peach and citrus with fruit garnish; Sweet.
+     <br/>
+     ABV: 7.9%
+     <button aria-hidden="true" onclick="playAudio('menu_audios/sangria_desc.mp3')">
+      ▶️
+     </button>
+    </div>
+   </div>
+   <div class="menu-item">
+    <button aria-controls="desc-electric-kool-aid" aria-expanded="false" onclick="toggleDesc('desc-electric-kool-aid', this)">
+     Electric Kool Aid
+     <button aria-hidden="true" onclick="playAudio('menu_audios/electric-kool-aid_name.mp3')">
+      ▶️
+     </button>
+    </button>
+    <div class="item-desc" hidden="" id="desc-electric-kool-aid">
+     Strawberry, orange, banana, fermented peach, ruby red grapefruit. As Leonard Cohen once sang of a gal that fed him oranges all the way from China—This exotic berry blend sings a tale of similar allure and mystery. Except the gal hails from Clyde and her berries come from Williamson. “One man gathers what another man spills.”
+     <br/>
+     ABV: 5.8%
+     <button aria-hidden="true" onclick="playAudio('menu_audios/electric-kool-aid_desc.mp3')">
+      ▶️
+     </button>
+    </div>
+   </div>
+  </section>
+  <script>
+   function toggleDesc(id, btn) {
       const desc = document.getElementById(id);
       const isHidden = desc.hasAttribute('hidden');
       desc.hidden = !isHidden;
       btn.setAttribute('aria-expanded', String(isHidden));
     }
+    function playAudio(path) {
+      const audio = new Audio(path);
+      audio.play();
+    }
   </script>
-<script>
-function toggleDesc(id, btn) {
-  const desc = document.getElementById(id);
-  const isHidden = desc.hasAttribute('hidden');
-  desc.hidden = !isHidden;
-  btn.setAttribute('aria-expanded', String(isHidden));
-}
-
-function playAudio(path) {
-  const audio = new Audio(path);
-  audio.play();
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const audioButtons = document.querySelectorAll('.audio-button');
-  if (!prefersReducedMotion.matches) {
-    audioButtons.forEach(btn => {
-      btn.hidden = false;
-    });
-  }
-});
-</script><script>
-        function playAudio(path) {
-            const audio = new Audio(path);
-            audio.play();
-        }
-        </script><script>
-        function playAudio(path) {
-            const audio = new Audio(path);
-            audio.play();
-        }
-        </script><script>
-    const isScreenReaderActive = window.matchMedia('(forced-colors: active)').matches;
-    document.querySelectorAll('.audio-button').forEach(btn => {
-      btn.style.display = isScreenReaderActive ? 'none' : 'inline-block';
-    });
-    </script></body>
+ </body>
 </html>
