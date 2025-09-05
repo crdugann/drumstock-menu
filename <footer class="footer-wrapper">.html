@@ -1,0 +1,103 @@
+<footer class="footer-wrapper">
+  {{#is settings.minimal_footer 'hide'}}
+  <div class="footer-navigation-links">
+    <div class="container footer-navigation-links-container">
+      <div class="footer-links support">
+        <h3 class="footer-links-title">For Support Inquiries</h3>
+        <ul class="links-list">
+          <li class="link-list-item">
+            <a href="mailto:support@literably.com" title="Email us">support@literably.com</a>
+          </li>
+          <li class="link-list-item">
+            <a href="/hc/requests/new" title="Submit request">Submit request</a>
+          </li>
+          <li class="link-list-item">
+            <a href="tel:+14158429802" title="Phone Support">415-842-9802</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-links support">
+        <h3 class="footer-links-title">For Sales Inquiries</h3>
+        <ul class="links-list">
+          <li class="link-list-item">
+            <a href="mailto:tyler@literably.com" title="Sales email">tyler@literably.com</a>
+          </li>
+          <li class="link-list-item">
+            <a href="tel:+15136736662" title="Call">513-673-6662</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  {{/is}}
+  <div class="container footer-extras-wrapper">
+    <section class="copyright-wrapper">
+      <p class="copyright">Copyright &copy;
+        <span id="year"></span> {{#link 'help_center'}}{{help_center.name}}{{/link}}. All Rights Reserved</p>
+    </section>
+    <section class="social-media-wrapper">
+      <ul class="social-links">
+         {{#isnt settings.twitter_link '#'}}
+        <li>
+          <a title="Follow us on twitter" class="twitter" href="{{settings.twitter_link}}">
+            <i class="fab fa-twitter"></i>
+          </a>
+        </li>
+        {{/isnt}} {{#isnt settings.facebook_link '#'}}
+        <li>
+          <a title="Like us on facebook" class="facebook" href="{{settings.facebook_link}}">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </li>
+        {{/isnt}} {{#isnt settings.youtube_link '#'}}
+        <li>
+          <a title="Subscribe our channel on youtube" class="youtube" href="{{settings.youtube_link}}">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </li>
+        {{/isnt}} {{#isnt settings.linkedin_link '#'}}
+        <li>
+          <a title="Connect with us linkedin" class="linkedin" href="{{settings.linkedin_link}}">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </li>
+        {{/isnt}} {{#isnt settings.instagram_link '#'}}
+        <li>
+          <a title="Follow us on instagram" class="instagram" href="{{settings.instagram_link}}">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+        {{/isnt}} 
+      </ul>
+    </section>
+    <script>
+      var socialShareLength = $('ul.social-links').children().length;
+      if (!socialShareLength) {
+        $('ul.social-links').hide();
+      }
+    </script>
+    <div class="language-wrapper">
+      {{#if alternative_locales}}
+      <div class="dropdown language-selector" aria-haspopup="true">
+        <a class="dropdown-toggle">{{current_locale.name}}</a>
+        <span class="dropdown-menu dropdown-menu-end" role="menu">
+          {{#each alternative_locales}}
+          <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">
+            {{name}}
+          </a>
+          {{/each}}
+        </span>
+      </div>
+      {{/if}}
+    </div>
+
+  </div>
+</footer>
+<script>
+  (function () {
+    $('.diziana-multilevel-menu').dizianaMultilevelMenu();
+  })();
+  var newdate = new Date(),
+    currentyear = newdate.getFullYear();
+  $('#year').html(currentyear);
+</script>

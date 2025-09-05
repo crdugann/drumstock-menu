@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Accessible Drink Menu</title>
+<style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    .menu-category {
+      margin-bottom: 2em;
+    }
+    .menu-item button {
+      display: block;
+      width: 100%;
+      font-size: 1.2em;
+      padding: 10px;
+      margin-bottom: 5px;
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-align: left;
+    }
+    .item-desc {
+      padding: 10px;
+      background: #e3f2fd;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+  </style>
+<style>
+.audio-button {
+  font-size: 1em;
+  padding: 5px 10px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-top: 5px;
+  display: inline-block;
+}
+</style><style>
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 5px 0;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+        </style><style>
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 5px 0;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+        </style></head>
+<body>
+<h1>Drumstock Drink Menu</h1>
+<section aria-labelledby="draft-heading" class="menu-category">
+<h2 id="draft-heading">Draft</h2><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/section_draft.mp3').play()">🔊</button>
+<div class="menu-item">
+<button aria-controls="desc-bird" aria-expanded="false" onclick="toggleDesc('desc-bird', this)">Bird Song</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_bird_song.mp3').play()">🔊</button>
+<div class="item-desc" hidden="" id="desc-bird"></div>
+</div>
+<div class="menu-item">
+<button aria-controls="desc-rose-draft" aria-expanded="false" onclick="toggleDesc('desc-rose-draft', this)">Rosé All Day</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_ros__all_day.mp3').play()">🔊</button>
+<div class="item-desc" hidden="" id="desc-rose-draft">Waiting on description.</div>
+</div>
+<div class="menu-item">
+<button aria-controls="desc-shandy" aria-expanded="false" onclick="toggleDesc('desc-shandy', this)">River Daddy Shandy</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_river_daddy_shandy.mp3').play()">🔊</button>
+<div class="item-desc" hidden="" id="desc-shandy">Waiting on description.</div>
+</div>
+<div class="menu-item">
+<button aria-controls="desc-sangria" aria-expanded="false" onclick="toggleDesc('desc-sangria', this)">Sangria</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_sangria.mp3').play()">🔊</button>
+<div class="item-desc" hidden="" id="desc-sangria">Waiting on description.</div>
+</div>
+<div class="menu-item">
+<button aria-controls="desc-electric" aria-expanded="false" onclick="toggleDesc('desc-electric', this)">Electric Kool Aid</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_electric_kool_aid.mp3').play()">🔊</button>
+<div class="item-desc" hidden="" id="desc-electric">
+        Sweet– Golden Russet Cider, notes of Strawberry, Orange, and Fermented Peach.<br/>
+        ABV: 5.8% — $7… 12 oz.
+      </div>
+</div>
+<div class="menu-item">
+<button aria-controls="desc-tulsi" aria-expanded="false" onclick="toggleDesc('desc-tulsi', this)">Tulsi</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_tulsi.mp3').play()">🔊</button>
+<div class="item-desc" hidden="" id="desc-tulsi">
+        Sweet– Made with tulsi basil grown by Fellenz Farm and sage grown at our Stark St. gardens.<br/>
+        ABV: 6.2% — $7… 12 oz.
+      </div>
+</div>
+</section>
+<section aria-labelledby="cans-heading" class="menu-category">
+<h2 id="cans-heading">Cans</h2><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/section_cans.mp3').play()">🔊</button>
+<div class="menu-item">
+<button aria-controls="desc-pippin-cans" aria-expanded="false" onclick="toggleDesc('desc-pippin-cans', this)">Pippin Ain’t Easy</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_pippin_ain_t_easy.mp3').play()">🔊</button>
+<div class="item-desc" hidden="" id="desc-pippin-cans">
+        Dry – Single Varietal House Cider, Made with Newton Pippin Apples.<br/>
+        ABV: 5.7% — $8… 12 oz.
+      </div>
+</div>
+<div class="menu-item">
+<button aria-controls="desc-rose-cans" aria-expanded="false" onclick="toggleDesc('desc-rose-cans', this)">Rosé All Day</button><button aria-hidden="true" class="audio-button" onclick="new Audio('menu_audios/menu_item_ros__all_day.mp3').play()">🔊</button>
+<div class="item-desc" hidden="" id="desc-rose-cans">Waiting on description.</div>
+</div>
+</section>
+<script>
+    function toggleDesc(id, btn) {
+      const desc = document.getElementById(id);
+      const isHidden = desc.hasAttribute('hidden');
+      desc.hidden = !isHidden;
+      btn.setAttribute('aria-expanded', String(isHidden));
+    }
+  </script>
+<script>
+function toggleDesc(id, btn) {
+  const desc = document.getElementById(id);
+  const isHidden = desc.hasAttribute('hidden');
+  desc.hidden = !isHidden;
+  btn.setAttribute('aria-expanded', String(isHidden));
+}
+
+function playAudio(path) {
+  const audio = new Audio(path);
+  audio.play();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const audioButtons = document.querySelectorAll('.audio-button');
+  if (!prefersReducedMotion.matches) {
+    audioButtons.forEach(btn => {
+      btn.hidden = false;
+    });
+  }
+});
+</script><script>
+        function playAudio(path) {
+            const audio = new Audio(path);
+            audio.play();
+        }
+        </script><script>
+        function playAudio(path) {
+            const audio = new Audio(path);
+            audio.play();
+        }
+        </script><script>
+    const isScreenReaderActive = window.matchMedia('(forced-colors: active)').matches;
+    document.querySelectorAll('.audio-button').forEach(btn => {
+      btn.style.display = isScreenReaderActive ? 'none' : 'inline-block';
+    });
+    </script></body>
+</html>
