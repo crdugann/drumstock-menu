@@ -5,22 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Drumstock 2025 Menu</title>
   <style>
-    /* ===== Base, bigger & responsive ===== */
     :root{
       --space: clamp(12px, 1.2vw, 20px);
       --radius: 14px;
-
-      /* Carousel sizing & "bleed" to extend left */
       --carousel-h: min(88vh, 820px);
       --dot: 12px;
-      --carousel-bleed: clamp(40px, 10vw, 240px); /* extend into the left column */
     }
     html, body { height: 100%; }
     body{
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.4;
-      font-size: clamp(20px, 2.4vw, 26px); /* Large, scroll-friendly text */
+      font-size: clamp(20px, 2.4vw, 26px);
       -webkit-font-smoothing: antialiased;
       color: #111;
       background: #fff;
@@ -29,6 +25,7 @@
       font-size: clamp(48px, 7vw, 72px);
       margin: 0 0 calc(var(--space) * 1.5);
       letter-spacing: -0.02em;
+      word-wrap: break-word;
     }
     h2{
       font-size: clamp(28px, 4vw, 40px);
@@ -36,37 +33,34 @@
       letter-spacing: -0.01em;
     }
 
-    /* ===== Layout: 2/3 content + 1/3 right rail ===== */
+    /* 2 columns on desktop; no overlap */
     .wrap{
       display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+      grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
       gap: clamp(16px, 2vw, 32px);
       align-items: start;
       min-height: 100vh;
       padding: clamp(16px, 2vw, 32px);
     }
 
-    /* ===== Right-rail carousel ===== */
+    /* Right-rail carousel */
     .right-rail{
       position: sticky;
       top: 0;
       height: 100vh;
       display: flex;
       align-items: start;
-      /* Entire carousel is ignored by assistive tech per your request */
-      /* (visual only) */
     }
     .carousel{
       position: relative;
-      width: calc(100% + var(--carousel-bleed)); /* extend into left column */
-      margin-left: calc(-1 * var(--carousel-bleed));
+      width: 100%;
       height: var(--carousel-h);
       margin-top: clamp(16px, 5vh, 64px);
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: 0 6px 18px rgba(0,0,0,.12);
-      background: #f3efe3; /* warm backdrop for 'contain' letterboxing */
-      touch-action: pan-y; /* allow vertical page scroll; we handle horizontal swipes */
+      background: #f3efe3;
+      touch-action: pan-y;
       user-select: none;
     }
     .slides{
@@ -80,10 +74,9 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;        /* show ENTIRE poster without cropping */
+      object-fit: contain;
       opacity: 0;
       transition: opacity 300ms ease-in-out;
-      will-change: opacity;
     }
     .slide.current{ opacity: 1; }
 
@@ -109,18 +102,18 @@
       box-shadow: 0 0 0 3px rgba(255,255,255,.35);
     }
 
-    /* ===== Menu styles ===== */
+    /* Menu */
     .menu-category{ margin-bottom: calc(var(--space) * 2); }
     .menu-item{
       display: flex;
       align-items: center;
       gap: var(--space);
       margin: var(--space) 0;
-      flex-wrap: wrap;
+      flex-wrap: wrap; /* wrap, don't bleed */
     }
     .menu-item .title{
       padding: 10px 14px;
-      min-height: 44px;           /* a11y target size */
+      min-height: 44px;
       border-radius: 999px;
       border: none;
       background: #e8f0fe;
@@ -130,7 +123,7 @@
     }
     .menu-item .play{
       padding: 8px 12px;
-      min-height: 44px;           /* a11y target size */
+      min-height: 44px;
       border-radius: 999px;
       border: none;
       background: #eef1f4;
@@ -145,34 +138,50 @@
       border-radius: var(--radius);
     }
 
-    /* Focus visibility for keyboard users */
     button:focus-visible,
     a:focus-visible{
       outline: 3px solid #1a73e8;
       outline-offset: 2px;
     }
 
-    /* Stack on small screens */
+    /* Mobile: carousel first and tall */
     @media (max-width: 900px){
       .wrap{ grid-template-columns: 1fr; }
       .right-rail{
         position: static;
         height: auto;
+        order: -1;                 /* show carousel above menu */
       }
       .carousel{
         width: 100%;
-        margin-left: 0;
-        height: auto;
-        aspect-ratio: 4 / 3;
-        margin-top: var(--space);
+        margin: 0 0 var(--space);
+        height: min(78svh, 780px);
+        border-radius: var(--radius);
       }
-      .slide{ object-fit: cover; } /* looks nicer on narrow phones */
+      .slide{ object-fit: contain; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- ===== LEFT: Menu ===== -->
+    <!-- RIGHT rail (appears first on mobile) -->
+    <aside class="right-rail" aria-hidden="true">
+      <div class="carousel">
+        <div class="slides">
+          <!-- Order: lineup, bird, cabaret -->
+          <img class="slide current" src="menu_images/drumstocklineup.jpg" alt="" />
+          <img class="slide" src="menu_images/drumstockbird.jpg" alt="" />
+          <img class="slide" src="menu_images/cabaret.jpg" alt="" />
+        </div>
+        <div class="dots">
+          <button class="dot active" type="button"></button>
+          <button class="dot" type="button"></button>
+          <button class="dot" type="button"></button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- LEFT: Menu -->
     <main>
       <h1>Drumstock 2025 Menu</h1>
 
@@ -338,30 +347,6 @@
         </div>
       </section>
     </main>
-
-    <!-- ===== RIGHT: Swipe-only Image Carousel (ignored by screen readers) ===== -->
-    <aside class="right-rail" aria-hidden="true">
-      <div class="carousel">
-        <div class="slides">
-          <!-- Order: lineup, bird, cabaret -->
-          <img class="slide current"
-               src="menu_images/drumstocklineup.jpg"
-               alt="" />
-          <img class="slide"
-               src="menu_images/drumstockbird.jpg"
-               alt="" />
-          <img class="slide"
-               src="menu_images/cabaret.jpg"
-               alt="" />
-        </div>
-
-        <div class="dots">
-          <button class="dot active" type="button"></button>
-          <button class="dot" type="button"></button>
-          <button class="dot" type="button"></button>
-        </div>
-      </div>
-    </aside>
   </div>
 
   <script>
@@ -371,12 +356,46 @@
       desc.hidden = !isHidden;
       btn.setAttribute('aria-expanded', String(isHidden));
     }
+
+    // Single shared audio player: never allow concurrent playback
+    (function initPlayer(){
+      if (!window._player) {
+        window._player = new Audio();
+        window._player.preload = 'none';
+        window._currentSrc = '';
+        window._player.addEventListener('ended', () => { window._currentSrc = ''; });
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden && !window._player.paused) {
+            window._player.pause();
+            window._player.currentTime = 0;
+          }
+        });
+      }
+    })();
+
     function playAudio(path){
-      const audio = new Audio(path);
-      audio.play();
+      try {
+        const a = window._player;
+        // If something is already playing, pause it first
+        if (!a.paused) a.pause();
+
+        // If the same clip is requested again, restart from the beginning
+        if (window._currentSrc === path) {
+          a.currentTime = 0;
+        } else {
+          a.src = path;
+          window._currentSrc = path;
+          a.currentTime = 0;
+        }
+
+        const p = a.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      } catch (err) {
+        console.error('Audio play error:', err);
+      }
     }
 
-    // ===== Swipe-only carousel (no arrows; hidden from a11y) =====
+    // Swipe-only carousel
     (function(){
       const root   = document.querySelector('.carousel');
       if (!root) return;
@@ -392,20 +411,12 @@
 
       dots.forEach((d, idx) => d.addEventListener('click', () => show(idx)));
 
-      // Pointer/touch swipe
       let startX = null, tracking = false;
-      const threshold = 40; // px swipe to change
+      const threshold = 40;
 
       function onDown(e){
         tracking = true;
         startX = e.clientX ?? (e.touches && e.touches[0].clientX);
-      }
-      function onMove(e){
-        if (!tracking) return;
-        const x = e.clientX ?? (e.touches && e.touches[0].clientX);
-        if (x == null) return;
-        const dx = x - startX;
-        // don't change slide on minor movements; wait for end
       }
       function onUp(e){
         if (!tracking) return;
@@ -419,13 +430,9 @@
       }
 
       root.addEventListener('pointerdown', onDown, {passive: true});
-      root.addEventListener('pointermove', onMove, {passive: true});
       root.addEventListener('pointerup', onUp, {passive: true});
       root.addEventListener('pointercancel', () => { tracking = false; startX = null; });
-
-      // Touch events for older iOS
       root.addEventListener('touchstart', onDown, {passive: true});
-      root.addEventListener('touchmove', onMove, {passive: true});
       root.addEventListener('touchend', onUp, {passive: true});
       root.addEventListener('touchcancel', () => { tracking = false; startX = null; });
     })();
