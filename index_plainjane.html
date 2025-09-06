@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drink Menu</title>
+    <style>
+      .menu-category { margin-bottom: 2rem; }
+      .menu-item button { margin-right: 0.5rem; }
+      .item-desc { margin-top: .5rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Drumstock 2025 Menu</h1>
+
+    <section class="menu-category" aria-labelledby="beer-heading">
+      <h2 id="beer-heading">Beer</h2>
+
+      <!-- Rise Pale Ale -->
+      <div class="menu-item">
+        <button type="button" aria-controls="desc-rise-pale" aria-expanded="false"
+                onclick="toggleDesc('desc-rise-pale', this)">
+          Rise Pale Ale
+        </button>
+        <button type="button" aria-hidden="true"
+                onclick="playAudio('menu_audios/rise_pale_ale_title.mp3')">▶️</button>
+        <div id="desc-rise-pale" class="item-desc" hidden>
+          An American Pale Ale flavored with Citra and Mackinac hops. Dry start to finish, this beverage gives citrus fruit, a hint of pine sap and tangerine peel notes on a barely perceptible grainy malt canvas. The Mackinac hops are 100% New York State.
+          <br />
+          ABV: 5.9%, 43 IBUs
+          <button type="button" aria-hidden="true"
+                  onclick="playAudio('menu_audios/rise_pale_ale________________desc.mp3')">▶️</button>
+        </div>
+      </div>
+
+      <!-- Bad Dog IPA -->
+      <div class="menu-item">
+        <button type="button" aria-controls="desc-bad-dog" aria-expanded="false"
+                onclick="toggleDesc('desc-bad-dog', this)">
+          Bad Dog IPA
+        </button>
+        <button type="button" aria-hidden="true"
+                onclick="playAudio('menu_audios/bad_dog_ipa_title.mp3')">▶️</button>
+        <div id="desc-bad-dog" class="item-desc" hidden>
+          Pine and citrus dominate this straw-colored, West Coast inspired IPA that won best beer in the Finger Lakes in 2018.
+          <br />
+          ABV: 6.5%, 76 IBUs
+          <button type="button" aria-hidden="true"
+                  onclick="playAudio('menu_audios/bad_dog_ipa________________desc.mp3')">▶️</button>
+        </div>
+      </div>
+
+      <!-- Señor Crispy Lager -->
+      <div class="menu-item">
+        <button type="button" aria-controls="desc-senor-crispy" aria-expanded="false"
+                onclick="toggleDesc('desc-senor-crispy', this)">
+          Señor Crispy Lager
+        </button>
+        <button type="button" aria-hidden="true"
+                onclick="playAudio('menu_audios/senor_crispy_lager_title.mp3')">▶️</button>
+        <div id="desc-senor-crispy" class="item-desc" hidden>
+          Very bright and crisp with a floral and citrus bouquet. A strong nod to a popular Mexican lager.
+          A simple grain bill and a simple hop bill result in a no-nonsense, clean beverage.
+          <br />
+          ABV: 4.8%, 15 IBUs
+          <button type="button" aria-hidden="true"
+                  onclick="playAudio('menu_audios/senor_crispy_lager________________desc.mp3')">▶️</button>
+        </div>
+      </div>
+
+      <!-- Dry Hopped Pilsner -->
+      <div class="menu-item">
+        <button type="button" aria-controls="desc-dry-hopped" aria-expanded="false"
+                onclick="toggleDesc('desc-dry-hopped', this)">
+          Dry Hopped Pilsner
+        </button>
+        <button type="button" aria-hidden="true"
+                onclick="playAudio('menu_audios/dry_hopped_pilsner_title.mp3')">▶️</button>
+        <div id="desc-dry-hopped" class="item-desc" hidden>
+          Our Pulteney Pilsner dry-hopped with just enough Bohemian Saaz to create a unique tasting pilsner that is reminiscent of an unskunked German malt beverage found within a green bottle. Saaz on the nose, floral. Herbal, earthy notes that linger on the palate. Bitter but less assertive than our naked Pulteney Pils.
+          <br />
+          ABV: 5.4%, 30 IBUs
+          <button type="button" aria-hidden="true"
+                  onclick="playAudio('menu_audios/dry_hopped_pilsner________________desc.mp3')">▶️</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-category" aria-labelledby="cider-heading">
+      <h2 id="cider-heading">Cider</h2>
+
+      <!-- Bird Song -->
+      <div class="menu-item">
+        <button type="button" aria-controls="desc-bird-song" aria-expanded="false"
+                onclick="toggleDesc('desc-bird-song', this)">
+          Bird Song
+        </button>
+        <button type="button" aria-hidden="true"
+                onclick="playAudio('menu_audios/bird_song_title.mp3')">▶️</button>
+        <div id="desc-bird-song" class="item-desc" hidden>
+          Dry; nose is reminiscent of kindergarten lunch; applesauce with a tin foil lid. Pleasant yet refined apple flavor balanced towards the tannins and mellowed by carbonation.
+          <br />
+          ABV: 6.8%
+          <button type="button" aria-hidden="true"
+                  onclick="playAudio('menu_audios/bird_song________________desc.mp3')">▶️</button>
+        </div>
+      </div>
+
+      
+      <!-- Rosé All Day -->
+    <div class="menu-item">
+      <button type="button" aria-controls="desc-rose-all-day" aria-expanded="false"
+          onclick="toggleDesc('desc-rose-all-day', this)">
+          Rosé All Day
+        </button>
+        <button type="button" aria-hidden="true"
+                onclick="playAudio('menu_audios/rose_all_day_title.mp3')">▶️</button>
+        <div id="desc-rose-all-day" class="item-desc" hidden>
+          Gentle acidity blending a fruit forward mouthfeel with a graceful citrusy finish. Cherry, red apple, watermelon rind make this juicy blend drink like a wine, without all the pretentiousness.
+          <br />
+          ABV: 6.8%
+          <button type="button" aria-hidden="true"
+                  onclick="playAudio('menu_audios/rose_all_day________________desc.mp3')">▶️</button>
+  </div>
+</div>
+
+
+      <!-- River Daddy Shandy -->
+      <div class="menu-item">
+        <button type="button" aria-controls="desc-river-daddy" aria-expanded="false"
+                onclick="toggleDesc('desc-river-daddy', this)">
+          River Daddy Shandy
+        </button>
+        <button type="button" aria-hidden="true"
+                onclick="playAudio('menu_audios/river_daddy_shandy_title.mp3')">▶️</button>
+        <div id="desc-river-daddy" class="item-desc" hidden>
+          Sweet; refreshing, a little tart but easy drinking. Notes of honeydew, watermelon, citrus and fresh apple. The tannins make it feel like grapefruit, balancing the sweetness and tartness provides another dimension.
+          <br />
+          ABV: 7.1%
+          <button type="button" aria-hidden="true"
+                  onclick="playAudio('menu_audios/river_daddy_shandy________________desc.mp3')">▶️</button>
+        </div>
+      </div>
+
+      <!-- Sangria -->
+      <div class="menu-item">
+        <button type="button" aria-controls="desc-sangria" aria-expanded="false"
+                onclick="toggleDesc('desc-sangria', this)">
+          Sangria
+        </button>
+        <button type="button" aria-hidden="true"
+                onclick="playAudio('menu_audios/sangria_title.mp3')">▶️</button>
+        <div id="desc-sangria" class="item-desc" hidden>
+          Refreshing blend of white wine, peach and citrus with fruit garnish; Sweet.
+          <br />
+          ABV: 7.9%
+          <button type="button" aria-hidden="true"
+                  onclick="playAudio('menu_audios/sangria________________desc.mp3')">▶️</button>
+        </div>
+      </div>
+
+      <!-- Electric Kool Aid -->
+      <div class="menu-item">
+        <button type="button" aria-controls="desc-electric-kool-aid" aria-expanded="false"
+                onclick="toggleDesc('desc-electric-kool-aid', this)">
+          Electric Kool Aid
+        </button>
+        <button type="button" aria-hidden="true"
+                onclick="playAudio('menu_audios/electric_kool_aid_title.mp3')">▶️</button>
+        <div id="desc-electric-kool-aid" class="item-desc" hidden>
+          Strawberry, orange, banana, fermented peach, ruby red grapefruit. As Leonard Cohen once sang of a gal that fed him oranges all the way from China—This exotic berry blend sings a tale of similar allure and mystery. Except the gal hails from Clyde and her berries come from Williamson. “One man gathers what another man spills.”
+          <br />
+          ABV: 5.8%
+          <button type="button" aria-hidden="true"
+                  onclick="playAudio('menu_audios/electric_kool_aid________________desc.mp3')">▶️</button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      function toggleDesc(id, btn) {
+        const desc = document.getElementById(id);
+        const isHidden = desc.hasAttribute('hidden');
+        desc.hidden = !isHidden;
+        btn.setAttribute('aria-expanded', String(isHidden));
+      }
+      function playAudio(path) {
+        const audio = new Audio(path);
+        audio.play();
+      }
+    </script>
+  </body>
+</html>
