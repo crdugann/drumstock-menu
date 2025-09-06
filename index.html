@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Drumstock 2025 Menu</title>
+  <style>
+    /* ===== Base, bigger & responsive ===== */
+    :root{
+      --space: clamp(12px, 1.2vw, 20px);
+      --radius: 14px;
+
+      /* Carousel sizing & "bleed" to extend left */
+      --carousel-h: min(88vh, 820px);
+      --dot: 12px;
+      --carousel-bleed: clamp(40px, 10vw, 240px); /* extend into the left column */
+    }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.4;
+      font-size: clamp(20px, 2.4vw, 26px); /* Large, scroll-friendly text */
+      -webkit-font-smoothing: antialiased;
+      color: #111;
+      background: #fff;
+    }
+    h1{
+      font-size: clamp(48px, 7vw, 72px);
+      margin: 0 0 calc(var(--space) * 1.5);
+      letter-spacing: -0.02em;
+    }
+    h2{
+      font-size: clamp(28px, 4vw, 40px);
+      margin: calc(var(--space) * 2) 0 var(--space);
+      letter-spacing: -0.01em;
+    }
+
+    /* ===== Layout: 2/3 content + 1/3 right rail ===== */
+    .wrap{
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+      gap: clamp(16px, 2vw, 32px);
+      align-items: start;
+      min-height: 100vh;
+      padding: clamp(16px, 2vw, 32px);
+    }
+
+    /* ===== Right-rail carousel ===== */
+    .right-rail{
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: start;
+      /* Entire carousel is ignored by assistive tech per your request */
+      /* (visual only) */
+    }
+    .carousel{
+      position: relative;
+      width: calc(100% + var(--carousel-bleed)); /* extend into left column */
+      margin-left: calc(-1 * var(--carousel-bleed));
+      height: var(--carousel-h);
+      margin-top: clamp(16px, 5vh, 64px);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0,0,0,.12);
+      background: #f3efe3; /* warm backdrop for 'contain' letterboxing */
+      touch-action: pan-y; /* allow vertical page scroll; we handle horizontal swipes */
+      user-select: none;
+    }
+    .slides{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      isolation: isolate;
+    }
+    .slide{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;        /* show ENTIRE poster without cropping */
+      opacity: 0;
+      transition: opacity 300ms ease-in-out;
+      will-change: opacity;
+    }
+    .slide.current{ opacity: 1; }
+
+    .dots{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 12px;
+      display: flex;
+      gap: 10px;
+      pointer-events: auto;
+    }
+    .dot{
+      width: var(--dot);
+      height: var(--dot);
+      border-radius: 999px;
+      border: 0;
+      background: rgba(0,0,0,.25);
+      cursor: pointer;
+    }
+    .dot.active{
+      background: rgba(0,0,0,.6);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.35);
+    }
+
+    /* ===== Menu styles ===== */
+    .menu-category{ margin-bottom: calc(var(--space) * 2); }
+    .menu-item{
+      display: flex;
+      align-items: center;
+      gap: var(--space);
+      margin: var(--space) 0;
+      flex-wrap: wrap;
+    }
+    .menu-item .title{
+      padding: 10px 14px;
+      min-height: 44px;           /* a11y target size */
+      border-radius: 999px;
+      border: none;
+      background: #e8f0fe;
+      color: #1a73e8;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .menu-item .play{
+      padding: 8px 12px;
+      min-height: 44px;           /* a11y target size */
+      border-radius: 999px;
+      border: none;
+      background: #eef1f4;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .item-desc{
+      width: 100%;
+      margin-left: calc(var(--space) * 0.5);
+      padding: 10px 14px;
+      background: #f7f7f9;
+      border-radius: var(--radius);
+    }
+
+    /* Focus visibility for keyboard users */
+    button:focus-visible,
+    a:focus-visible{
+      outline: 3px solid #1a73e8;
+      outline-offset: 2px;
+    }
+
+    /* Stack on small screens */
+    @media (max-width: 900px){
+      .wrap{ grid-template-columns: 1fr; }
+      .right-rail{
+        position: static;
+        height: auto;
+      }
+      .carousel{
+        width: 100%;
+        margin-left: 0;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        margin-top: var(--space);
+      }
+      .slide{ object-fit: cover; } /* looks nicer on narrow phones */
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- ===== LEFT: Menu ===== -->
+    <main>
+      <h1>Drumstock 2025 Menu</h1>
+
+      <section class="menu-category" aria-labelledby="beer-heading">
+        <h2 id="beer-heading">Beer</h2>
+
+        <!-- Rise Pale Ale -->
+        <div class="menu-item">
+          <button type="button" class="title"
+                  aria-controls="desc-rise-pale" aria-expanded="false"
+                  onclick="toggleDesc('desc-rise-pale', this)">
+            Rise Pale Ale
+          </button>
+          <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                  onclick="playAudio('menu_audios/rise_pale_ale_title.mp3')">▶️</button>
+          <div id="desc-rise-pale" class="item-desc" hidden>
+            An American Pale Ale flavored with Citra and Mackinac hops. Dry start to finish, this beverage gives citrus fruit, a hint of pine sap and tangerine peel notes on a barely perceptible grainy malt canvas. The Mackinac hops are 100% New York State.
+            <br />ABV: 5.9%, 43 IBUs
+            <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                    onclick="playAudio('menu_audios/rise_pale_ale________________desc.mp3')">▶️</button>
+          </div>
+        </div>
+
+        <!-- Bad Dog IPA -->
+        <div class="menu-item">
+          <button type="button" class="title"
+                  aria-controls="desc-bad-dog" aria-expanded="false"
+                  onclick="toggleDesc('desc-bad-dog', this)">
+            Bad Dog IPA
+          </button>
+          <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                  onclick="playAudio('menu_audios/bad_dog_ipa_title.mp3')">▶️</button>
+          <div id="desc-bad-dog" class="item-desc" hidden>
+            Pine and citrus dominate this straw-colored, West Coast inspired IPA that won best beer in the Finger Lakes in 2018.
+            <br />ABV: 6.5%, 76 IBUs
+            <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                    onclick="playAudio('menu_audios/bad_dog_ipa________________desc.mp3')">▶️</button>
+          </div>
+        </div>
+
+        <!-- Señor Crispy Lager -->
+        <div class="menu-item">
+          <button type="button" class="title"
+                  aria-controls="desc-senor-crispy" aria-expanded="false"
+                  onclick="toggleDesc('desc-senor-crispy', this)">
+            Señor Crispy Lager
+          </button>
+          <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                  onclick="playAudio('menu_audios/senor_crispy_lager_title.mp3')">▶️</button>
+          <div id="desc-senor-crispy" class="item-desc" hidden>
+            Very bright and crisp with a floral and citrus bouquet. A strong nod to a popular Mexican lager. 
+            A simple grain bill and a simple hop bill result in a no-nonsense, clean beverage.
+            <br />ABV: 4.8%, 15 IBUs
+            <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                    onclick="playAudio('menu_audios/senor_crispy_lager________________desc.mp3')">▶️</button>
+          </div>
+        </div>
+
+        <!-- Dry Hopped Pilsner -->
+        <div class="menu-item">
+          <button type="button" class="title"
+                  aria-controls="desc-dry-hopped" aria-expanded="false"
+                  onclick="toggleDesc('desc-dry-hopped', this)">
+            Dry Hopped Pilsner
+          </button>
+          <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                  onclick="playAudio('menu_audios/dry_hopped_pilsner_title.mp3')">▶️</button>
+          <div id="desc-dry-hopped" class="item-desc" hidden>
+            Our Pulteney Pilsner dry-hopped with just enough Bohemian Saaz to create a unique tasting pilsner that is reminiscent of an unskunked German malt beverage found within a green bottle. Saaz on the nose, floral. Herbal, earthy notes that linger on the palate. Bitter but less assertive than our naked Pulteney Pils.
+            <br />ABV: 5.4%, 30 IBUs
+            <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                    onclick="playAudio('menu_audios/dry_hopped_pilsner________________desc.mp3')">▶️</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-category" aria-labelledby="cider-heading">
+        <h2 id="cider-heading">Cider</h2>
+
+        <!-- Bird Song -->
+        <div class="menu-item">
+          <button type="button" class="title"
+                  aria-controls="desc-bird-song" aria-expanded="false"
+                  onclick="toggleDesc('desc-bird-song', this)">
+            Bird Song
+          </button>
+          <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                  onclick="playAudio('menu_audios/bird_song_title.mp3')">▶️</button>
+          <div id="desc-bird-song" class="item-desc" hidden>
+            Dry; nose is reminiscent of kindergarten lunch; applesauce with a tin foil lid. Pleasant yet refined apple flavor balanced towards the tannins and mellowed by carbonation.
+            <br />ABV: 6.8%
+            <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                    onclick="playAudio('menu_audios/bird_song________________desc.mp3')">▶️</button>
+          </div>
+        </div>
+
+        <!-- Rosé All Day -->
+        <div class="menu-item">
+          <button type="button" class="title"
+                  aria-controls="desc-rose-all-day" aria-expanded="false"
+                  onclick="toggleDesc('desc-rose-all-day', this)">
+            Rosé All Day
+          </button>
+          <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                  onclick="playAudio('menu_audios/rose_all_day_title.mp3')">▶️</button>
+          <div id="desc-rose-all-day" class="item-desc" hidden>
+            Gentle acidity blending a fruit forward mouthfeel with a graceful citrusy finish. Cherry, red apple, watermelon rind make this juicy blend drink like a wine, without all the pretentiousness.
+            <br />ABV: 6.8%
+            <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                    onclick="playAudio('menu_audios/rose_all_day________________desc.mp3')">▶️</button>
+          </div>
+        </div>
+
+        <!-- River Daddy Shandy -->
+        <div class="menu-item">
+          <button type="button" class="title"
+                  aria-controls="desc-river-daddy" aria-expanded="false"
+                  onclick="toggleDesc('desc-river-daddy', this)">
+            River Daddy Shandy
+          </button>
+          <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                  onclick="playAudio('menu_audios/river_daddy_shandy_title.mp3')">▶️</button>
+          <div id="desc-river-daddy" class="item-desc" hidden>
+            Sweet; refreshing, a little tart but easy drinking. Notes of honeydew, watermelon, citrus and fresh apple. The tannins make it feel like grapefruit, balancing the sweetness and tartness provides another dimension.
+            <br />ABV: 7.1%
+            <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                    onclick="playAudio('menu_audios/river_daddy_shandy________________desc.mp3')">▶️</button>
+          </div>
+        </div>
+
+        <!-- Sangria -->
+        <div class="menu-item">
+          <button type="button" class="title"
+                  aria-controls="desc-sangria" aria-expanded="false"
+                  onclick="toggleDesc('desc-sangria', this)">
+            Sangria
+          </button>
+          <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                  onclick="playAudio('menu_audios/sangria_title.mp3')">▶️</button>
+          <div id="desc-sangria" class="item-desc" hidden>
+            Refreshing blend of white wine, peach and citrus with fruit garnish; Sweet.
+            <br />ABV: 7.9%
+            <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                    onclick="playAudio('menu_audios/sangria________________desc.mp3')">▶️</button>
+          </div>
+        </div>
+
+        <!-- Electric Kool Aid -->
+        <div class="menu-item">
+          <button type="button" class="title"
+                  aria-controls="desc-electric-kool-aid" aria-expanded="false"
+                  onclick="toggleDesc('desc-electric-kool-aid', this)">
+            Electric Kool Aid
+          </button>
+          <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                  onclick="playAudio('menu_audios/electric_kool_aid_title.mp3')">▶️</button>
+          <div id="desc-electric-kool-aid" class="item-desc" hidden>
+            Strawberry, orange, banana, fermented peach, ruby red grapefruit. As Leonard Cohen once sang of a gal that fed him oranges all the way from China—This exotic berry blend sings a tale of similar allure and mystery. Except the gal hails from Clyde and her berries come from Williamson. “One man gathers what another man spills.”
+            <br />ABV: 5.8%
+            <button type="button" class="play" aria-hidden="true" tabindex="-1"
+                    onclick="playAudio('menu_audios/electric_kool_aid________________desc.mp3')">▶️</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== RIGHT: Swipe-only Image Carousel (ignored by screen readers) ===== -->
+    <aside class="right-rail" aria-hidden="true">
+      <div class="carousel">
+        <div class="slides">
+          <!-- Order: lineup, bird, cabaret -->
+          <img class="slide current"
+               src="menu_images/drumstocklineup.jpg"
+               alt="" />
+          <img class="slide"
+               src="menu_images/drumstockbird.jpg"
+               alt="" />
+          <img class="slide"
+               src="menu_images/cabaret.jpg"
+               alt="" />
+        </div>
+
+        <div class="dots">
+          <button class="dot active" type="button"></button>
+          <button class="dot" type="button"></button>
+          <button class="dot" type="button"></button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    function toggleDesc(id, btn){
+      const desc = document.getElementById(id);
+      const isHidden = desc.hasAttribute('hidden');
+      desc.hidden = !isHidden;
+      btn.setAttribute('aria-expanded', String(isHidden));
+    }
+    function playAudio(path){
+      const audio = new Audio(path);
+      audio.play();
+    }
+
+    // ===== Swipe-only carousel (no arrows; hidden from a11y) =====
+    (function(){
+      const root   = document.querySelector('.carousel');
+      if (!root) return;
+      const slides = Array.from(root.querySelectorAll('.slide'));
+      const dots   = Array.from(root.querySelectorAll('.dot'));
+      let i = 0;
+
+      function show(n){
+        i = (n + slides.length) % slides.length;
+        slides.forEach((img, idx) => img.classList.toggle('current', idx === i));
+        dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+      }
+
+      dots.forEach((d, idx) => d.addEventListener('click', () => show(idx)));
+
+      // Pointer/touch swipe
+      let startX = null, tracking = false;
+      const threshold = 40; // px swipe to change
+
+      function onDown(e){
+        tracking = true;
+        startX = e.clientX ?? (e.touches && e.touches[0].clientX);
+      }
+      function onMove(e){
+        if (!tracking) return;
+        const x = e.clientX ?? (e.touches && e.touches[0].clientX);
+        if (x == null) return;
+        const dx = x - startX;
+        // don't change slide on minor movements; wait for end
+      }
+      function onUp(e){
+        if (!tracking) return;
+        const x = e.clientX ?? (e.changedTouches && e.changedTouches[0].clientX);
+        if (x != null){
+          const dx = x - startX;
+          if (dx > threshold)      show(i - 1);
+          else if (dx < -threshold) show(i + 1);
+        }
+        tracking = false; startX = null;
+      }
+
+      root.addEventListener('pointerdown', onDown, {passive: true});
+      root.addEventListener('pointermove', onMove, {passive: true});
+      root.addEventListener('pointerup', onUp, {passive: true});
+      root.addEventListener('pointercancel', () => { tracking = false; startX = null; });
+
+      // Touch events for older iOS
+      root.addEventListener('touchstart', onDown, {passive: true});
+      root.addEventListener('touchmove', onMove, {passive: true});
+      root.addEventListener('touchend', onUp, {passive: true});
+      root.addEventListener('touchcancel', () => { tracking = false; startX = null; });
+    })();
+  </script>
+</body>
+</html>
